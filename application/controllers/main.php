@@ -125,6 +125,13 @@ class Main extends CI_Controller
 		$this->index();
 	}
 
+	public function calendar7()
+	{
+		// Przerobić to potem
+		$this->cview('skin/header', false, "Kalendarz");
+		$this->cview('calendar7', false, false);
+	}
+
 	public function calendar()
 	{
 		if (!$this->logged())

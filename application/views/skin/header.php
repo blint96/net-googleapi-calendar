@@ -32,7 +32,7 @@
                         <li class="<?=($this->uri->segment(2)==='index' || $this->uri->segment(2) == FALSE)?'active':''?>"><a href="/<?=$this->router->fetch_class();?>/index">Strona główna</a></li>
                         <li class="<?=($this->uri->segment(2)==='calendar')?'active':''?>"><a href="/<?=$this->router->fetch_class();?>/calendar">Kalendarz</a></li>
                         <li class="<?=($this->uri->segment(2) === 'login' || $this->uri->segment(2) ==='register' || $this->uri->segment(2)==='user' || $this->uri->segment(2) === 'register')?'active':''?>"><a href="/<?=$this->router->fetch_class();?>/user">Użytkownik</a></li>
-                    
+                        <li class="<?=($this->uri->segment(2) === 'calendar7')?'active':''?>"><a href="/<?=$this->router->fetch_class();?>/calendar7">Kalendarz tygodniowy</a></li>
                         <?php if($logged):?>
                         <li class="<?=($this->uri->segment(2)==='logout' || $this->uri->segment(2) == FALSE)?'active':''?>"><a href="/<?=$this->router->fetch_class();?>/logout">Wyloguj się</a></li>
                         <?php endif;?>
