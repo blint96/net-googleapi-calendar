@@ -154,7 +154,6 @@ class Main extends CI_Controller
 		{
 		 // print "debug false.\n";
 		} else {
-		  //print "debug true.\n";
 		  foreach ($test->getItems() as $event) {
 		    $start = $event->start->dateTime;
 		    if (empty($start)) {
@@ -164,7 +163,6 @@ class Main extends CI_Controller
 		  }
 		}
 
-		//var_dump($testArray);
 		$data['events'] = $testArray;
 		$this->cview('skin/header', false, "Kalendarz");
 		$this->cview('calendar', false, false, $data);

@@ -5,6 +5,10 @@ var month_name = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", 
 var d = new Date(Date.now());
 var set = getWeekNumber(Date.now());
 
+// Generujemy widok
+var calendarContener = document.getElementById('describe');
+generateCalendarView(calendarContener);
+
 // Ustawiamy
 var month = d.getMonth();
 var year = d.getFullYear();
@@ -50,7 +54,8 @@ function getISOWeeks(y)
 function changeWeek(action)
 {
     curr_max_week = weekCount(year, month + 1);
-    
+    clearWeekEvents(); // czyszczenie tablicy
+
     if (action == "left")
     {
         limitdays[0] -= 7;
@@ -109,4 +114,95 @@ function weekCount(year, month_number)
     var used = firstOfMonth.getDay() + lastOfMonth.getDate();
 
     return Math.ceil( used / 7);
+}
+
+// Ustawianie dnia jako wydarzenie day = sob-2300 albo pn-0100
+function markDayAsEvent(element, string)
+{
+    var setting = element;
+    if (setting)
+    {
+        if(setting.innerHTML == "")
+        {
+            setting.style.background = "#428bca";
+            setting.innerHTML = string;
+        }
+        else
+        {
+            setting.style.background = "";
+            setting.innerHTML = "";
+        }
+    }
+}
+
+// Usuwanie eventów
+function clearWeekEvents()
+{
+    for(i = 0; i < 24; i++)
+    {
+        var hour = i;
+        if (hour < 10)
+            hour = 0 + "" + hour;
+
+        document.getElementById("pn-"+hour+"00").style.background = "";
+        document.getElementById("pn-"+hour+"00").innerHTML = "";
+
+        document.getElementById("wt-"+hour+"00").style.background = "";
+        document.getElementById("wt-"+hour+"00").innerHTML = "";
+
+        document.getElementById("sr-"+hour+"00").style.background = "";
+        document.getElementById("sr-"+hour+"00").innerHTML = "";
+
+        document.getElementById("czw-"+hour+"00").style.background = "";
+        document.getElementById("czw-"+hour+"00").innerHTML = "";
+
+        document.getElementById("pt-"+hour+"00").style.background = "";
+        document.getElementById("pt-"+hour+"00").innerHTML = "";
+
+        document.getElementById("sob-"+hour+"00").style.background = "";
+        document.getElementById("sob-"+hour+"00").innerHTML = "";
+
+        document.getElementById("nd-"+hour+"00").style.background = "";
+        document.getElementById("nd-"+hour+"00").innerHTML = "";
+    }
+}
+
+// Generowanie wyglądu kalendarza
+function generateCalendarView(div)
+{
+    var insert = "<table border='1' style='color: #fff; width: 100%;'>";
+
+    insert += "<tr style=\"height: 35px;\">";
+        insert += "<td style=\"width: 12.5%;\">czas</td>";
+        insert += "<td style=\"width: 12.5%;\">pn</td>";
+        insert += "<td style=\"width: 12.5%;\">wt</td>";
+        insert += "<td style=\"width: 12.5%;\">śr</td>";
+        insert += "<td style=\"width: 12.5%;\">czw</td>";
+        insert += "<td style=\"width: 12.5%;\">pt</td>";
+        insert += "<td style=\"width: 12.5%;\">sob</td>";
+        insert += "<td style=\"width: 12.5%;\">nd</td>";
+    insert += "</tr>";
+
+    for(i = 0; i < 24; i++)
+    {
+        var hour = i;
+        if (hour < 10)
+        {
+            hour = 0 + "" + hour;
+        }
+
+        insert += "<tr style=\"color: #000;\">";
+        insert += "<td class=\"hour\">"+hour+":00</td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"pn-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"wt-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"sr-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"czw-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"pt-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"sob-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"nd-"+hour+"00"+"\"></td>";
+        insert += "</tr>";
+    }
+
+    insert += "</table>"
+    div.innerHTML = insert;
 }

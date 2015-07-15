@@ -8,6 +8,8 @@ function checkAuth()
     'client_id': CLIENT_ID,
     'scope': SCOPES,
     'immediate': true}, handleAuthResult);
+
+  alert(gapi.auth.getToken().access_token);
 }
 
 /**
@@ -17,6 +19,7 @@ function checkAuth()
 */
 function handleAuthResult(authResult) 
 {
+  //alert(authResult.access_token);
 	var pre_test = document.getElementById('output');
 	var calendar = document.getElementById('calendarPanel');
     var authorizeDiv = document.getElementById('authorize-div');
@@ -24,6 +27,8 @@ function handleAuthResult(authResult)
    	if (authResult && !authResult.error) 
     {
         // Hide auth UI, then load client library.
+
+
         authorizeDiv.style.display = 'none';
         calendar.style.display = '';
         pre_test.style.display = '';
