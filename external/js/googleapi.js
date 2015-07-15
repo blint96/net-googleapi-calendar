@@ -17,12 +17,16 @@ function checkAuth()
 */
 function handleAuthResult(authResult) 
 {
+	var pre_test = document.getElementById('output');
+	var calendar = document.getElementById('calendarPanel');
     var authorizeDiv = document.getElementById('authorize-div');
     authorizeDiv.style.display = 'inline';
    	if (authResult && !authResult.error) 
     {
         // Hide auth UI, then load client library.
         authorizeDiv.style.display = 'none';
+        calendar.style.display = '';
+        pre_test.style.display = '';
         loadCalendarApi();
     } 
     else 
@@ -30,6 +34,8 @@ function handleAuthResult(authResult)
         // Show auth UI, allowing the user to initiate authorization by
         // clicking authorize button.
         authorizeDiv.style.display = 'inline';
+       	calendar.style.display = 'none';
+       	pre_test.style.display = 'none';
     }
 }
 
@@ -56,6 +62,8 @@ function listUpcomingEvents()
         'maxResults': 10,
         'orderBy': 'startTime'
     });
+
+    //alert((new Date()).toISOString());
 
     request.execute(function(resp) 
     {
