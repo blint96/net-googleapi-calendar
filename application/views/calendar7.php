@@ -12,8 +12,10 @@
     <!-- Respomsive slider -->
     <link href="/external/css/responsive-calendar.css" rel="stylesheet">
     <link href="/external/css/calendar7.css" rel="stylesheet">
+    <link href="/external/css/calendar7.css" rel="stylesheet">
     <!-- Czcionka -->
-    <link href="/external/css/start.css" rel="stylesheet"/>
+    <link href="/external/css/bootstrap-dialog.css" rel="stylesheet"/>
+    <link href="/external/less/bootstrap-dialog.less" rel="stylesheet/less"/>
   </head>
   <body>
     <!-- MODAL -->
@@ -37,7 +39,7 @@
     </div><!-- /.modal -->
 
     <!-- GOOGLE API -->
-    <div class="container" style="margin-bottom: 100px;">
+    <div class="container" style="margin-bottom: 50px;">
       <div class="row">
         <div id="authorize-div" style="display: none">
           <span>Aby przejrzeć swój kalendarz musisz się zalogować do konta Google.</span><hr>
@@ -46,7 +48,7 @@
             Użyj konta Google™
           </button>
         </div>
-        <pre id="output"></pre>
+        <pre id="output" style="display: none;"></pre>
       </div>
     </div>
     <!-- KONIEC GOOGLE API -->
@@ -64,7 +66,7 @@
           
           <div id="display" style="position: relative; -webkit-animation-name: startup;  -webkit-animation-duration: 0.5s; animation-name: startup; animation-duration: 0.5s;cursor:pointer; background: rgba(0, 0, 0, 0.03); text-align: center; margin-bottom: 100px; -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75); box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);">
             <div style="border-bottom:1 px #ff0000 solid; background: #333; position: absolute; width: 100%; z-index: -1; height: 35px;"> </div>
-            <div id="describe">
+            <div id="describe" style="overflow: auto;">
               <!-- Javasript tutaj wsadzi co trzeba -->
             </div>
           </div>
@@ -75,6 +77,7 @@
     </div>
     <script src="/external/js/jquery.js"></script>
     <script src="/external/js/bootstrap.min.js"></script>
+    <script src="/external/js/bootstrap-dialog.js"></script>
     <script src="/external/js/calendar7.js"></script>
     <script src="/external/js/googleapi.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>

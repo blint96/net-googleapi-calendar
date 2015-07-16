@@ -69,10 +69,11 @@ function listUpcomingEvents()
 {
     var request = gapi.client.calendar.events.list({
         'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
+        'timeMin': (new Date(limitdays[0])).toISOString(),
+        'timeMax': (new Date(limitdays[1])).toISOString(),
         'showDeleted': false,
         'singleEvents': true,
-        'maxResults': 10,
+        'maxResults': 250,
         'orderBy': 'startTime'
     });
 
@@ -94,11 +95,17 @@ function listUpcomingEvents()
               if(!to_when)
                 to_when = event.end.date;
 
-              if (when && to_when)
+              if (event.start.dateTime && event.end.dateTime)
               {
-                addEventToCalendar(3, 5, "sr");
-                addEventToCalendar(12, 15, "pt");
-                addEventToCalendar(0, 10, "pn");
+                var start_ts = Date.parse(limitdays[0]);
+                var stop_ts = Date.parse(limitdays[1]);
+                var current_ts = Date.parse(when);
+                if(current_ts > start_ts || current_ts < stop_ts)
+                {
+                  var d = new Date(when);
+                  var y = new Date(to_when);
+                  addEventToCalendar(d.getHours(), y.getHours(), getDayTagFromDate(when), event.id);
+                }
               }
 
               appendPre(event.summary + ' (' + when + ' - ' + to_when + ')')
@@ -112,12 +119,7 @@ function listUpcomingEvents()
     });
 }
 
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
+
 function appendPre(message) {
     var pre = document.getElementById('output');
     var textContent = document.createTextNode(message + '\n');
