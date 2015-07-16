@@ -170,7 +170,7 @@ function clearWeekEvents()
 // Generowanie wyglądu kalendarza
 function generateCalendarView(div)
 {
-    var insert = "<table border='1' style='color: #fff; width: 100%;'>";
+    var insert = "<table border='1' style='border-spacing:0; border-collapse: collapse; color: #fff; width: 100%;'>";
 
     insert += "<tr style=\"height: 35px;\">";
         insert += "<td style=\"width: 12.5%;\">czas</td>";
@@ -179,7 +179,7 @@ function generateCalendarView(div)
         insert += "<td style=\"width: 12.5%;\">śr</td>";
         insert += "<td style=\"width: 12.5%;\">czw</td>";
         insert += "<td style=\"width: 12.5%;\">pt</td>";
-        insert += "<td style=\"width: 12.5%;\">sob</td>";
+        insert += "<td id='sob-tab' style=\"width: 12.5%;\">sob</td>";
         insert += "<td style=\"width: 12.5%;\">nd</td>";
     insert += "</tr>";
 
@@ -193,16 +193,39 @@ function generateCalendarView(div)
 
         insert += "<tr style=\"color: #000;\">";
         insert += "<td class=\"hour\">"+hour+":00</td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"pn-"+hour+"00"+"\"></td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"wt-"+hour+"00"+"\"></td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"sr-"+hour+"00"+"\"></td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"czw-"+hour+"00"+"\"></td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"pt-"+hour+"00"+"\"></td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"sob-"+hour+"00"+"\"></td>";
-        insert += "<td onclick='markDayAsEvent(this, \"event\");' class=\"hour\" id=\"nd-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"pn-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"wt-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"sr-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"czw-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"pt-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"sob-"+hour+"00"+"\"></td>";
+        insert += "<td onclick='markDayAsEvent(this, \"event\");' id=\"nd-"+hour+"00"+"\"></td>";
         insert += "</tr>";
     }
 
     insert += "</table>"
     div.innerHTML = insert;
+}
+
+//var p = $( "#sob-1000" );
+//alert(p.offset().top + ", " + p.offset().left);
+//var top_offset = (-10) + (0 * 40);    // 5 = ilość godzin 
+//document.getElementById('sob-0000').innerHTML = "<div id='test_event' style='top:"+top_offset+"px ; background: #000; color: #fff; position: relative; left: 0;'>Event</div>";
+
+function addEventToCalendar(start_hour, stop_hour, week)
+{
+    var height = parseInt(stop_hour) - parseInt(start_hour);
+    var top_offset = (-5) + 40 + (start_hour * 40);
+
+    var tab = 0;
+    if (week=="pn") { tab = 12.5; } else if(week=="wt") { tab = 12.5 * 2; } else if(week =="sr") { tab = 12.5 * 3; } else if(week=="czw") { tab = 12.5 * 4; } else if(week=="pt") { tab = 12.5 * 5; } else if(week=="sob") { tab = 12.5* 6; } else {tab = 12.5 *7; }
+    var left_offset = tab * 1;
+    var length = ((stop_hour + 1) - start_hour) * 40;
+    document.getElementById(week+'-0000').innerHTML = "<div id='test_event' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: #333; color: #fff; position: absolute; left: "+left_offset+"%;'>Event</div>";
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
 }

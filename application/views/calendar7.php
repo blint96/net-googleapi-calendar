@@ -1,62 +1,4 @@
-<style>
-/* centered columns styles */
-/* Chrome, Safari, Opera */
-
-.hour { height: 40px; }
-
-@-webkit-keyframes startup
-{
-    from {
-      background-color: rgba(0, 0, 0, 0.0);
-      -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.0); 
-      -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.0);
-    }
-    to {
-      background-color: rgba(0, 0, 0, 0.03);
-      -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75); 
-      -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
-    }
-}
-
-@keyframes startup
-{
-    from {
-      background-color: rgba(0, 0, 0, 0.0);
-      -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.0); 
-      -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.0);
-    }
-    to {
-      background-color: rgba(0, 0, 0, 0.03);
-      -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75); 
-      -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.75);
-    }
-}
-
-@-webkit-keyframes fade {
-    from {background-color: rgba(0, 0, 0, 0.5);}
-    to {background-color: rgba(0, 0, 0, 0.0);}
-}
-
-/* Standard syntax */
-@keyframes fade {
-    from {background-color: rgba(0, 0, 0, 0.5);}
-    to {background-color: rgba(0, 0, 0, 0.0);}
-}
-
-.day-describe { width: 13%; display: inline-block; text-align: center; padding-top:5px; padding-bottom: 5px; }
-.day-hour { border-radius: 3px; padding-top:2px; padding-bottom: 2px; color: rgba(0, 0, 0, 0.25);}
-.day-hour:hover {
-  color: rgba(0, 0, 0, 0.8); font-weight: bold;
-  -webkit-animation-name: fade; /* Chrome, Safari, Opera */
-  -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
-  animation-name: fade;
-  animation-duration: 0.5s;
-}
-.day-title { font-family:tahoma; font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #fff;}
-</style>
-
-
-  <head>
+ <head>
     <meta charset="utf-8">
     <meta name="robots" content="All" />
     <meta name="revisit-after" content="7 days" />
@@ -69,6 +11,7 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <!-- Respomsive slider -->
     <link href="/external/css/responsive-calendar.css" rel="stylesheet">
+    <link href="/external/css/calendar7.css" rel="stylesheet">
     <!-- Czcionka -->
     <link href="/external/css/start.css" rel="stylesheet"/>
   </head>

@@ -1,3 +1,9 @@
+/*
+* dateTime jest tylko jeśli
+* event jest tego tygodnia
+* z nieznanych bliżej przyczyn
+*/
+
 var CLIENT_ID = "647823329107-nj4chsddrg94o1ivl338dui4ktc2mn5j.apps.googleusercontent.com";
 var apiKey = 'AIzaSyDbe73eyg-CyOzv_T1mVrfbSlTScBCe5Zk';
 var SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -8,8 +14,6 @@ function checkAuth()
     'client_id': CLIENT_ID,
     'scope': SCOPES,
     'immediate': true}, handleAuthResult);
-
-  alert(gapi.auth.getToken().access_token);
 }
 
 /**
@@ -28,6 +32,10 @@ function handleAuthResult(authResult)
     {
         // Hide auth UI, then load client library.
 
+        gapi.auth.setToken({
+          access_token: authResult.access_token,
+          expires_in: "3600"
+        });
 
         authorizeDiv.style.display = 'none';
         calendar.style.display = '';
@@ -68,8 +76,6 @@ function listUpcomingEvents()
         'orderBy': 'startTime'
     });
 
-    //alert((new Date()).toISOString());
-
     request.execute(function(resp) 
     {
         var events = resp.items;
@@ -81,11 +87,21 @@ function listUpcomingEvents()
             {
               var event = events[i];
               var when = event.start.dateTime;
+              var to_when = event.end.dateTime;
               if (!when) 
-              {
                 when = event.start.date;
+
+              if(!to_when)
+                to_when = event.end.date;
+
+              if (when && to_when)
+              {
+                addEventToCalendar(3, 5, "sr");
+                addEventToCalendar(12, 15, "pt");
+                addEventToCalendar(0, 10, "pn");
               }
-              appendPre(event.summary + ' (' + when + ')')
+
+              appendPre(event.summary + ' (' + when + ' - ' + to_when + ')')
             }
         } 
         else 
