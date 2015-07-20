@@ -174,7 +174,7 @@ function addEventToCalendar(start_hour, stop_hour, week, id)
     if (title_start_hour < 10) {title_start_hour = "0"+title_start_hour;} if (title_stop_hour < 10) {title_stop_hour = "0"+title_stop_hour;}
     var title = title_start_hour + ":00 - " + title_stop_hour + ":00";
     //document.getElementById(week+'-0000').innerHTML = "<div id='test_event' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: rgba(90,40,40,0.5); position: absolute; left: "+left_offset+"%;'>"+title+"</div>";
-    $( "#"+week+"-0000" ).append( "<div id='"+id+"' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: rgba(90,40,40,0.5); position: absolute; left: "+left_offset+"%;'>"+title+"</div>" );
+    $( "#"+week+"-0000" ).append( "<div onclick='showCalendarModal(this);' id='"+id+"' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: rgba(90,40,40,0.5); position: absolute; left: "+left_offset+"%;'>"+title+"</div>" );
 }
 
 function addDays(date, days) {
@@ -211,4 +211,45 @@ function getDayTagFromDate(date) // 5 = piątek
             return "nd";
             break;
     }
+}
+
+function showCalendarModal(element)
+{
+    // Po nowemu
+    /*var output = $.ajax({method: "GET", url: "../api/getdetails.php", dataType: "html", data: {id: element.id}}).done(function(msg) {});
+    console.log(output);*/
+
+    var ajax = $.ajax({datatype : "json", success: function(result) { console.log(result); }, contentType: "text/plain", url: '../api/getdetails.html?id='+element.id})
+
+
+    /*alert(element.id);
+    $.get( "../api/getdetails.html?id="+element.id, function( data )  // data -> text
+    {
+        var chuj = $(data).find('div#result');
+        console.log(chuj);
+
+        /*var title = "<form>";
+            // Data początku
+            title += '<div class="form-group">';
+                title += '<label for="exampleInputEmail1">Data początkowa</label>';
+                title += '<input type="text" class="form-control" id="inputStart" placeholder="">';
+            title += '</div>';
+
+            // Data końca
+            title += '<div class="form-group">';
+                title += '<label for="exampleInputEmail1">Data końcowa</label>';
+                title += '<input type="text" class="form-control" id="inputEnd" placeholder="">';
+            title += '</div>';
+
+            // Nazwa wydarzenia
+            title += '<div class="form-group">';
+                title += '<label for="exampleInputEmail1">Opis wydarzenia</label>';
+                title += '<input type="text" class="form-control" id="inputSummary" placeholder="Obiad u rodziców">';
+            title += '</div>';
+        title += "</form>"
+        BootstrapDialog.show({title: "Zaplanowane wydarzenie", type: BootstrapDialog.TYPE_SUCCESS, message: data, 
+            buttons: [{label: "Usuń", cssClass: 'btn-danger'}, {label: 'Zamknij', cssClass: 'btn-primary',action: function(dialogRef) {dialogRef.close();}}, {label: "Zapisz zmiany", cssClass:'btn-primary'}]});
+    
+    
+    });*/
 }
