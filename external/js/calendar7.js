@@ -215,41 +215,15 @@ function getDayTagFromDate(date) // 5 = piątek
 
 function showCalendarModal(element)
 {
-    // Po nowemu
-    /*var output = $.ajax({method: "GET", url: "../api/getdetails.php", dataType: "html", data: {id: element.id}}).done(function(msg) {});
-    console.log(output);*/
+    gapi.client.load('calendar', 'v3', function() {
+        var id = element.id;
+        var request = gapi.client.calendar.events.get({calendarId: 'primary', eventId: id});
 
-    var ajax = $.ajax({datatype : "json", success: function(result) { console.log(result); }, contentType: "text/plain", url: '../api/getdetails.html?id='+element.id})
-
-
-    /*alert(element.id);
-    $.get( "../api/getdetails.html?id="+element.id, function( data )  // data -> text
-    {
-        var chuj = $(data).find('div#result');
-        console.log(chuj);
-
-        /*var title = "<form>";
-            // Data początku
-            title += '<div class="form-group">';
-                title += '<label for="exampleInputEmail1">Data początkowa</label>';
-                title += '<input type="text" class="form-control" id="inputStart" placeholder="">';
-            title += '</div>';
-
-            // Data końca
-            title += '<div class="form-group">';
-                title += '<label for="exampleInputEmail1">Data końcowa</label>';
-                title += '<input type="text" class="form-control" id="inputEnd" placeholder="">';
-            title += '</div>';
-
-            // Nazwa wydarzenia
-            title += '<div class="form-group">';
-                title += '<label for="exampleInputEmail1">Opis wydarzenia</label>';
-                title += '<input type="text" class="form-control" id="inputSummary" placeholder="Obiad u rodziców">';
-            title += '</div>';
-        title += "</form>"
-        BootstrapDialog.show({title: "Zaplanowane wydarzenie", type: BootstrapDialog.TYPE_SUCCESS, message: data, 
-            buttons: [{label: "Usuń", cssClass: 'btn-danger'}, {label: 'Zamknij', cssClass: 'btn-primary',action: function(dialogRef) {dialogRef.close();}}, {label: "Zapisz zmiany", cssClass:'btn-primary'}]});
-    
-    
-    });*/
+        // Jest
+        request.execute(function(resp) 
+        {
+            var agent007 = {start: resp.start.dateTime, end: resp.end.dateTime, summary: resp.summary};
+            BootstrapDialog.alert(JSON.stringify(agent007));
+        });
+    });
 }
