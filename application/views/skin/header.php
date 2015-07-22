@@ -36,6 +36,7 @@
                         <?php if($logged):?>
                         <li class="<?=($this->uri->segment(2)==='logout' || $this->uri->segment(2) == FALSE)?'active':''?>"><a href="/<?=$this->router->fetch_class();?>/logout">Wyloguj się</a></li>
                         <?php endif;?>
+                        <li><a><?php echo $mail; ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

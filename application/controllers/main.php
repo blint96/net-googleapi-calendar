@@ -6,6 +6,7 @@ class Main extends CI_Controller
 	private function cview($body, $layout = true, $title = false, $data = false)
 	{
 		$data['title'] = $title;
+		$data['mail'] = $this->session->userdata('user_email');
 		if ($this->session->userdata('user_id') > 0)
 			$data['logged'] = true;
 		else
@@ -74,7 +75,7 @@ class Main extends CI_Controller
 			else
 			{
 				$this->load->helper('url');
-				$new_data = array("user_id" => $receive["user_id"]);
+				$new_data = array("user_id" => $receive["user_id"], "user_email" => $receive["user_email"]);
 				$this->session->set_userdata($new_data);
 				redirect('/user/', 'refresh');
 			}
@@ -128,8 +129,9 @@ class Main extends CI_Controller
 	public function calendar7()
 	{
 		// Przerobić to potem
+		$data['mail'] = $this->session->userdata('user_email');
 		$this->cview('skin/header', false, "Kalendarz");
-		$this->cview('calendar7', false, false);
+		$this->cview('calendar7', false, false, $data);
 	}
 
 	public function calendar()

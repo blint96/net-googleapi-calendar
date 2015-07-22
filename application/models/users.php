@@ -31,7 +31,7 @@ class Users extends CI_Model
     {
     	$salt = $this->generateSalt();
     	$passhash = md5(md5($salt).md5($pass));
-    	$this->db->query("INSERT INTO kdr_users VALUES(NULL, '$email', '$passhash', '$salt')");
+    	$this->db->query("INSERT INTO kdr_users VALUES(NULL, '$email', '$passhash', '$salt', 0)");
     	return true;
     }
 

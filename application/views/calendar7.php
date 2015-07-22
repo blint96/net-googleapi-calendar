@@ -44,9 +44,13 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <button onclick="clearWeekEvents(); loadCalendarApiByIDAspx('smigiel.sebastian@gmail.com');"> smigiel.sebastian@gmail.com</button>
-    <button onclick="clearWeekEvents(); loadCalendarApiByIDAspx('tyronegmd@gmail.com');"> tyronegmd@gmail.com</button>
-    <button onclick="clearWeekEvents(); loadCalendarApiByIDAspx('sobiec1996@gmail.com');"> sobiec1996@gmail.com</button>
+    <!-- Test -->
+    <div class="container" style="margin-bottom: 25px; ">
+      <div class="row">
+        <button class="btn btn-primary" onclick="clearWeekEvents(); loadCalendarApiByIDAspx('sobiec1996@gmail.com');">sobiec1996@gmail.com</button>
+        <button class="btn btn-primary" onclick="clearWeekEvents(); loadCalendarApiByIDAspx('tyronegmd@gmail.com');">tyronegmd@gmail.com</button>
+      </div> 
+    </div>
 
     <!-- GOOGLE API -->
     <div class="container" style="margin-bottom: 50px;">
@@ -103,6 +107,7 @@
                 $('#datetimeend').datetimepicker();
             });
     </script>
+    <script>select_cal_id = "<?php echo $mail; ?>";</script> <!-- przypisanie domyslnego maila odchodzimy od ładowania bez ID -->
     <script src="/external/js/calendar7.js"></script>
     <script src="/external/js/googleapi.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
