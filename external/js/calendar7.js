@@ -174,7 +174,7 @@ function addEventToCalendar(start_hour, stop_hour, week, id)
     if (title_start_hour < 10) {title_start_hour = "0"+title_start_hour;} if (title_stop_hour < 10) {title_stop_hour = "0"+title_stop_hour;}
     var title = title_start_hour + ":00 - " + title_stop_hour + ":00";
     //document.getElementById(week+'-0000').innerHTML = "<div id='test_event' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: rgba(90,40,40,0.5); position: absolute; left: "+left_offset+"%;'>"+title+"</div>";
-    $( "#"+week+"-0000" ).append( "<div onclick='showCalendarModal(this);' id='"+id+"' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: rgba(90,40,40,0.5); position: absolute; left: "+left_offset+"%;'>"+title+"</div>" );
+    $( "#"+week+"-0000" ).append( "<div onclick='showCalendarModal(this);' id='"+id+"' style='width: 12.5%; height: "+length+"px; top:"+top_offset+"px ; background: rgba(90,40,40,0.5); border: 1px #000 solid; position: absolute; left: "+left_offset+"%;'>"+title+"</div>" );
 }
 
 function addDays(date, days) {
@@ -213,6 +213,14 @@ function getDayTagFromDate(date) // 5 = piątek
     }
 }
 
+// Usuwanie wydarzenia
+function deleteEvent(id)
+{
+    gapi.client.calendar.events.delete({calendarId: 'primary', eventId: id.id}).execute();
+    id.style.display = "none";
+    BootstrapDialog.alert("Pomyślnie usunięto wydarzenie.");
+}
+
 function showCalendarModal(element)
 {
     gapi.client.load('calendar', 'v3', function() {
@@ -223,7 +231,18 @@ function showCalendarModal(element)
         request.execute(function(resp) 
         {
             var agent007 = {start: resp.start.dateTime, end: resp.end.dateTime, summary: resp.summary};
-            BootstrapDialog.alert(JSON.stringify(agent007));
+            $('#mainModal').modal('show'); 
+
+            // 07/11/2015 9:05 AM <-- taką chce
+            // a inną mamy
+
+            document.getElementById('start-input').value = "";
+            document.getElementById('end-input').value = "";
+
+            document.getElementById('content-placement').innerHTML = "<hr>Wszystko co wpiszesz powyżej automatycznie zapisze się do Google, pamiętaj więc, że zmiany są akceptowane na bierząco.";
+            document.getElementById('event-title').innerHTML = "Wydarzenie: " + resp.summary;
+
+            document.getElementById('extra-buttons').innerHTML = '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteEvent('+element.id+');">Usuń</button> <button type="button" class="btn btn-success" data-dismiss="modal">Zapisz</button>';
         });
     });
 }

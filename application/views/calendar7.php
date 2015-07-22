@@ -16,23 +16,29 @@
     <!-- Czcionka -->
     <link href="/external/css/bootstrap-dialog.css" rel="stylesheet"/>
     <link href="/external/less/bootstrap-dialog.less" rel="stylesheet/less"/>
+
+    <!-- Datetimer picker NOWE -->
+    <link href="/external/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="/external/css/bootstrap-datepicker.css" rel="stylesheet" />
   </head>
   <body>
+
     <!-- MODAL -->
     <div class="modal fade" id = "mainModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Wydarzenia w dniu</h4>
+            <h4 class="modal-title" id="event-title">Wydarzenia w dniu</h4>
           </div>
           <div id= "mod_content" class="modal-body">
-            <p><img src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s320x320/e15/11313649_819656401445679_984723699_n.jpg" /></p>
+            <div id = "date-placement"></div>
+            <div id = "content-placement"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Dodaj nowe</button>
-            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            <div id = "extra-buttons" style="position: relative; float: right; margin-left: 10px;"></div>
+            <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Dodaj nowe</button> -->
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -75,9 +81,24 @@
         <!-- Responsive calendar - END -->
       </div>
     </div>
+    <script>
+      var datestart = "<div class='input-group date' id='datetimestart'><input type='text' class='form-control' id='start-input' /><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div>";
+      var dateend = "<div class='input-group date' id='datetimeend'><input type='text' class='form-control' id='end-input' /><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div>";
+    
+      var modal = document.getElementById('date-placement');
+      modal.innerHTML = datestart + "<p>" + dateend;
+    </script>
     <script src="/external/js/jquery.js"></script>
+    <script src="/external/js/moment.js"></script>                      <!-- nowe -->
     <script src="/external/js/bootstrap.min.js"></script>
     <script src="/external/js/bootstrap-dialog.js"></script>
+    <script src="/external/js/bootstrap-datetimepicker.js"></script>    <!-- nowe -->
+    <script type="text/javascript">
+            $(function () {
+                $('#datetimestart').datetimepicker();
+                $('#datetimeend').datetimepicker();
+            });
+    </script>
     <script src="/external/js/calendar7.js"></script>
     <script src="/external/js/googleapi.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
