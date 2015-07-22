@@ -4,6 +4,9 @@ var month_name = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", 
 // Init daty
 var d = new Date(Date.now());
 
+// Aktualny kalendarz
+//var calendarId = 0;
+
 // Generujemy widok
 var calendarContener = document.getElementById('describe');
 generateCalendarView(calendarContener);
@@ -55,20 +58,7 @@ function getFirstLastDayOfWeek()
 // Ustawianie dnia jako wydarzenie day = sob-2300 albo pn-0100
 function markDayAsEvent(element, string)
 {
-    /*var setting = element;
-    if (setting)
-    {
-        if(setting.innerHTML == "")
-        {
-            setting.style.background = "#428bca";
-            setting.innerHTML = string;
-        }
-        else
-        {
-            setting.style.background = "";
-            setting.innerHTML = "";
-        }
-    }*/
+
 }
 
 // Usuwanie eventów

@@ -13,6 +13,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 function checkAuth() 
 {
+  gapi.client.setApiKey(apiKey);
 	gapi.auth.authorize({
     'client_id': CLIENT_ID,
     'scope': SCOPES,

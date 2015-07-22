@@ -44,6 +44,10 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <button onclick="clearWeekEvents(); loadCalendarApiByIDAspx('smigiel.sebastian@gmail.com');"> smigiel.sebastian@gmail.com</button>
+    <button onclick="clearWeekEvents(); loadCalendarApiByIDAspx('tyronegmd@gmail.com');"> tyronegmd@gmail.com</button>
+    <button onclick="clearWeekEvents(); loadCalendarApiByIDAspx('sobiec1996@gmail.com');"> sobiec1996@gmail.com</button>
+
     <!-- GOOGLE API -->
     <div class="container" style="margin-bottom: 50px;">
       <div class="row">
