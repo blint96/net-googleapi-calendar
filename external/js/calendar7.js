@@ -34,8 +34,8 @@ function changeWeek(action)
     }
 
     clearWeekEvents(); // czyszczenie tablicy
-    listUpcomingEvents() ;
-    document.getElementById('output').innerHTML = "";
+    listUpcomingEventsByIDAspx() ;
+    //document.getElementById('output').innerHTML = "";
 
     document.getElementById('cweek').innerHTML = limitdays[0].toISOString() + " - " + limitdays[1].toISOString() + " " + year;
     document.getElementById('display').style.display = 'none';

@@ -49,6 +49,7 @@
       <div class="row">
         <button class="btn btn-primary" onclick="clearWeekEvents(); loadCalendarApiByIDAspx('sobiec1996@gmail.com');">sobiec1996@gmail.com</button>
         <button class="btn btn-primary" onclick="clearWeekEvents(); loadCalendarApiByIDAspx('tyronegmd@gmail.com');">tyronegmd@gmail.com</button>
+        <button class="btn btn-primary" onclick="clearWeekEvents(); loadCalendarApiByIDAspx('dzonciastko@gmail.com');">dzonciastko@gmail.com</button>
       </div> 
     </div>
 
