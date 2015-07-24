@@ -1,5 +1,0 @@
-        <!--
-            STOP KALENDARZ
-        -->
-    </body>
-</html>
