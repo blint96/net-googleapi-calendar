@@ -310,6 +310,11 @@ function finishInsertingEvent()
     {
         // Zapisz do Google
         var calendarId = select_cal_id;
+        var start_google_date = new Date(document.getElementById('start-input').value);
+        var end_google_date = new Date(document.getElementById('end-input').value);
+
+        // Wykonaj Googlowy insert
+        insertEventByGAPI(document.getElementById('event-name').value, start_google_date.toISOString(), end_google_date.toISOString());
 
         $('#mainModal').modal('hide');
     }

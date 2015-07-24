@@ -170,3 +170,25 @@ function getUrlVars() {
   });
   return vars;
 }
+
+function insertEventByGAPI(summary, start, end)
+{
+    var event = {
+        'summary': summary,
+        'start':
+         {
+             'dateTime': start
+         },
+        'end':
+         {
+            'dateTime': end
+         }
+    };
+
+    var request = gapi.client.calendar.events.insert({
+        'calendarId': select_cal_id,
+        'resource': event
+    });
+
+    request.execute(function (event) { clearWeekEvents(); listUpcomingEventsByIDAspx(); });
+}
