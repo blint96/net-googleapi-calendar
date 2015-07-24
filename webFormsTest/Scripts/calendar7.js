@@ -231,9 +231,6 @@ function showCalendarModal(element)
         {
             var agent007 = {start: resp.start.dateTime, end: resp.end.dateTime, summary: resp.summary};
 
-            // 07/11/2015 9:05 AM <-- taką chce
-            // a inną mamy
-
             // Inputy inne
             document.getElementById('modal-info').innerHTML = "";
             var datestart = "<div class='input-group date' id='datetimestart'><input type='text' class='form-control' id='start-input' /><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div>";
