@@ -1,0 +1,217 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="cntPracownicy.ascx.cs" Inherits="webFormsTest.Controls.cntPracownicy" %>
+
+
+<asp:ListView ID="ListView1" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource1" InsertItemPosition="LastItem"
+              OnSelectedIndexChanged="ListView1_SelectedIndexChanged" OnItemDataBound="ListView1_ItemDataBound" OnItemEditing="ListView1_ItemEditing" OnItemInserting="ListView1_ItemInserting" OnItemUpdating="ListView1_ItemUpdating" OnSelectedIndexChanging="ListView1_SelectedIndexChanging">
+    <alternatingitemtemplate>
+        <tr style="background-color: #FAFAD2; color: #284775;">
+            <td>
+                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                <asp:Button ID="Button1" runat="server" CommandName="Select" Text="Select" />
+            </td>
+            <td>
+                <asp:Label ID="nazwiskoLabel" runat="server" Text='<%# Eval("nazwisko") %>' />
+            </td>
+            <td>
+                <asp:Label ID="imieLabel" runat="server" Text='<%# Eval("imie") %>' />
+            </td>
+            <td>
+                <asp:Label ID="nazwaLabel" runat="server" Text='<%# Eval("stanowisko") %>' />
+            </td>
+            <td>
+                <asp:Label ID="nazwa1Label" runat="server" Text='<%# Eval("dzial") %>' />
+            </td>
+            <td>
+                <asp:CheckBox ID="zatrudnionyCheckBox" runat="server" Checked='<%# Eval("zatrudniony") %>' Enabled="false" />
+            </td>
+            <td>
+                <asp:Label ID="google_idLabel" runat="server" Text='<%# Eval("google_id") %>' />
+            </td>
+        </tr>
+    </alternatingitemtemplate>
+    <edititemtemplate>
+        <tr style="background-color: #FFCC66; color: #000080;">
+            <td>
+                <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+            </td>
+            <td>
+                <asp:TextBox ID="nazwiskoTextBox" runat="server" Text='<%# Bind("nazwisko") %>' />
+            </td>
+            <td>
+                <asp:TextBox ID="imieTextBox" runat="server" Text='<%# Bind("imie") %>' />
+            </td>
+            <td>
+                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="nazwa" DataValueField="id">
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="nazwa" DataValueField="id">
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:CheckBox ID="zatrudnionyCheckBox" runat="server" Checked='<%# Bind("zatrudniony") %>' />
+            </td>
+            <td>
+                <asp:Label ID="google_idLabel" runat="server" Text='<%# Eval("google_id") %>' />
+            </td>
+        </tr>
+    </edititemtemplate>
+    <emptydatatemplate>
+        <table runat="server" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;">
+            <tr>
+                <td>No data was returned.</td>
+            </tr>
+        </table>
+    </emptydatatemplate>
+    <insertitemtemplate>
+        <tr style="">
+            <td>
+                <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
+                <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
+            </td>
+            <td>
+                <asp:TextBox ID="nazwiskoTextBox" runat="server" Text='<%# Bind("nazwisko") %>' />
+            </td>
+            <td>
+                <asp:TextBox ID="imieTextBox" runat="server" Text='<%# Bind("imie") %>' />
+            </td>
+            <td>
+                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="nazwa" DataValueField="id">
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="nazwa" DataValueField="id">
+                </asp:DropDownList>
+            </td>
+            <td>
+                <asp:CheckBox ID="zatrudnionyCheckBox" runat="server" Checked='<%# Bind("zatrudniony") %>' />
+            </td>
+            <td>
+                <asp:Label ID="google_idLabel" runat="server" Text='<%# Eval("google_id") %>' />
+            </td>
+        </tr>
+    </insertitemtemplate>
+    <itemtemplate>
+        <tr style="background-color: #FFFBD6; color: #333333;">
+            <td>
+                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                <asp:Button ID="Button1" runat="server" CommandName="Select" Text="Select" />
+            </td>
+            <td>
+                <asp:Label ID="nazwiskoLabel" runat="server" Text='<%# Eval("nazwisko") %>' />
+            </td>
+            <td>
+                <asp:Label ID="imieLabel" runat="server" Text='<%# Eval("imie") %>' />
+            </td>
+            <td>
+                <asp:Label ID="nazwaLabel" runat="server" Text='<%# Eval("stanowisko") %>' />
+            </td>
+            <td>
+                <asp:Label ID="nazwa1Label" runat="server" Text='<%# Eval("dzial") %>' />
+            </td>
+            <td>
+                <asp:CheckBox ID="zatrudnionyCheckBox" runat="server" Checked='<%# Eval("zatrudniony") %>' Enabled="false" />
+            </td>
+            <td>
+                <asp:Label ID="google_idLabel" runat="server" Text='<%# Eval("google_id") %>' />
+            </td>
+        </tr>
+    </itemtemplate>
+    <layouttemplate>
+        <table runat="server">
+            <tr runat="server">
+                <td runat="server">
+                    <table id="itemPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
+                        <tr runat="server" style="background-color: #FFFBD6; color: #333333;">
+                            <th runat="server"></th>
+                            <th runat="server">nazwisko</th>
+                            <th runat="server">imie</th>
+                            <th runat="server">nazwa</th>
+                            <th runat="server">nazwa1</th>
+                            <th runat="server">zatrudniony</th>
+                            <th runat="server">google_id</th>
+                        </tr>
+                        <tr id="itemPlaceholder" runat="server"></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr runat="server">
+                <td runat="server" style="text-align: center;background-color: #FFCC66; font-family: Verdana, Arial, Helvetica, sans-serif;color: #333333">
+                    <asp:DataPager ID="DataPager1" runat="server">
+                        <fields>
+                            <asp:nextpreviouspagerfield buttontype="Button" showfirstpagebutton="True" showlastpagebutton="True" />
+                        </fields>
+                    </asp:DataPager>
+                </td>
+            </tr>
+        </table>
+    </layouttemplate>
+    <selecteditemtemplate>
+        <tr style="background-color: #FFCC66; font-weight: bold;color: #000080;">
+            <td>
+                <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+                <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+                <asp:Button ID="Button2" runat="server" CommandName="Select" Text="Select" />
+            </td>
+            <td>
+                <asp:Label ID="nazwiskoLabel" runat="server" Text='<%# Eval("nazwisko") %>' />
+            </td>
+            <td>
+                <asp:Label ID="imieLabel" runat="server" Text='<%# Eval("imie") %>' />
+            </td>
+            <td>
+                <asp:Label ID="nazwaLabel" runat="server" Text='<%# Eval("stanowisko") %>' />
+            </td>
+            <td>
+                <asp:Label ID="nazwa1Label" runat="server" Text='<%# Eval("dzial") %>' />
+            </td>
+            <td>
+                <asp:CheckBox ID="zatrudnionyCheckBox" runat="server" Checked='<%# Eval("zatrudniony") %>' Enabled="false" />
+            </td>
+
+        </tr>
+    </selecteditemtemplate>
+</asp:ListView>
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:test_ConnectionString %>"
+                   DeleteCommand="DELETE FROM [employee] WHERE [id] = @id"
+                   InsertCommand="INSERT INTO [employee] ([nazwisko], [imie], [dzial_id], [stanowisko_id], [zatrudniony], [google_id]) VALUES
+                (@nazwisko, @imie, @dzial_id, @stanowisko_id, @zatrudniony, @google_id)"
+                   SelectCommand="select a.id, a.nazwisko, a.imie, a.dzial_id, a.stanowisko_id, s.nazwa as stanowisko, d.nazwa as dzial, a.zatrudniony, a.google_id
+                    from employee a
+                    left join stanowiska s on s.id = a.stanowisko_id
+                    left join dzialy d on d.id = a.dzial_id
+                "
+                   UpdateCommand="UPDATE employee SET nazwisko = @nazwisko, imie = @imie, dzial_id = @dzial_id, stanowisko_id = @stanowisko_id, zatrudniony = @zatrudniony, google_id = @google_id
+    WHERE (id = @id)">
+    <deleteparameters>
+        <asp:parameter name="id" type="Int32" />
+    </deleteparameters>
+    <insertparameters>
+        <asp:parameter name="nazwisko" type="String" />
+        <asp:parameter name="imie" type="String" />
+        <asp:parameter name="dzial_id" type="Int32" />
+        <asp:parameter name="stanowisko_id" type="Int32" />
+        <asp:parameter name="zatrudniony" type="Boolean" />
+        <asp:parameter name="google_id" type="String" />
+    </insertparameters>
+    <updateparameters>
+        <asp:parameter name="nazwisko" type="String" />
+        <asp:parameter name="imie" type="String" />
+        <asp:parameter name="dzial_id" type="Int32" />
+        <asp:parameter name="stanowisko_id" type="Int32" />
+        <asp:parameter name="zatrudniony" type="Boolean" />
+        <asp:parameter name="google_id" type="String" />
+        <asp:parameter name="id" type="Int32" />
+    </updateparameters>
+</asp:SqlDataSource>
+<asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:test_ConnectionString %>"
+                   SelectCommand="SELECT * FROM [stanowiska] ORDER BY [nazwa]"></asp:SqlDataSource>
+
+<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:test_ConnectionString %>"
+                   SelectCommand="SELECT * FROM [dzialy] ORDER BY [nazwa]"></asp:SqlDataSource>
+
+<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+

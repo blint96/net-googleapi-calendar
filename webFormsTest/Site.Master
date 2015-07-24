@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="webFormsTest.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+            <link href="Style/StyleSheet1.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="test"> asdf
+        <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>
+         <ol>
+            <li><a href="Pracownicy2.aspx">Pracownicy</a></li>
+
+            <li><a href="Konfiguracja.aspx">Konfiguracja</a></li>
+	
+            <li><a href="#">Kalendarz</a></li>
+          </ol>
+        
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
+                   
+        </asp:ContentPlaceHolder>
+    
+    
+    
+    
+    
+    
+    </div>
+    </form>
+</body>
+</html>
